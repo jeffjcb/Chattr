@@ -1,6 +1,9 @@
-FROM python:3.9
+FROM ubuntu:latest
 
 COPY . /app
+
+RUN sudo apt-get update
+
 
 RUN pip install -r requirements.txt
 

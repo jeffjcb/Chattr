@@ -1,7 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Chattr Coders Chat</title>
+    <title>Chattr Chat</title>
+        <!-- Font Icons -->
+        <link media="all" rel="stylesheet" href="../static/css/fonts/icomoon/icomoon.css">
+        <!--     <link media="all" rel="stylesheet" href="css/fonts/roxine-font-icon/roxine-font.css"> -->
+            <link media="all" rel="stylesheet" href="../static/vendors/font-awesome/css/font-awesome.css">
+            <!-- Vendors -->
+            <link media="all" rel="stylesheet" href="../static/vendors/owl-carousel/dist/assets/owl.carousel.min.css">
+            <link media="all" rel="stylesheet" href="../static/vendors/owl-carousel/dist/assets/owl.theme.default.min.css">
+            <link media="all" rel="stylesheet" href="../static/vendors/animate/animate.css">
+            <link media="all" rel="stylesheet" href="../static/vendors/rateyo/jquery.rateyo.css">
+            <link media="all" rel="stylesheet" href="../static/vendors/bootstrap-datepicker/css/bootstrap-datepicker.css">
+            <link media="all" rel="stylesheet" href="../static/vendors/fancyBox/source/jquery.fancybox.css">
+            <link media="all" rel="stylesheet" href="../static/vendors/fancyBox/source/helpers/jquery.fancybox-thumbs.css">
+            <!-- Bootstrap 4 -->
+            <link media="all" rel="stylesheet" href="../static/css/bootstrap.css">
+            <!-- Rev Slider -->
+            <link rel="stylesheet" type="text/css" href="../static/vendors/rev-slider/revolution/css/settings.css">
+            <link rel="stylesheet" type="text/css" href="../static/vendors/rev-slider/revolution/css/layers.css">
+            <link rel="stylesheet" type="text/css" href="../static/vendors/rev-slider/revolution/css/navigation.css">
+            <!-- Theme CSS -->
+            <link media="all" rel="stylesheet" href="../static/css/main.css">
+            <!-- Custom CSS -->
+            <link media="all" rel="stylesheet" href="../static/css/custom.css">
     <!--Link to CSS -->
     <link href="../static/bootstrap.min.css" rel="stylesheet" />
     <link href="../static/style.css" rel="stylesheet" />
@@ -11,12 +33,13 @@
         <script type="text/javascript" charset="utf-8">
             var socket;
             $(document).ready(function(){
+                $('#send').disabled = true;
                 socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
                 socket.on('connect', function() {
                     socket.emit('join', {});
                 });
                 socket.on('status', function(data) {
-                    $('#chat').val($('#chat').val() + '<' + data.msg + '>\n');
+                    $('#chat').val($('#chat').val() + data.msg + '\n');
                     $('#chat').scrollTop($('#chat')[0].scrollHeight);
                 });
                 socket.on('message', function(data) {
@@ -36,18 +59,34 @@
                     window.location.href = "{{ url_for('index') }}";
                 });
             }
+            function success(){
+            if(document.getElementById("text").value==="") { 
+                document.getElementById('send').disabled = true; 
+            } else { 
+                document.getElementById('send').disabled = false;
+            }
+        }
         </script>
   </head>
 
-  <body class="text-center">
+  <body class="text-center" background-color="#544F9F">
     
     <div class="chatwindow">
-      <h2 >Chattr Coders Chat</h2>
-      <h2>Room : {{session['room']}}</h2><br>
-      <textarea id="chat" cols="70" rows="10" placeholder="No messages yet. Start one..."></textarea><br /><br />
-      <input type="text" id="text" size="60" placeholder="Enter your message here" />
-      <button type="button" id="send" class="btn btn-success">SEND</button><br /><br />
+
+          <center>
+          <div class="card text-bg-dark mb-2" style="max-width: 20rem;">
+            <div class="card-body">
+                <h2 >Chattr Chat</h2>
+                <h2>Room : {{session['room']}}</h2><br>
+            </div>
+          </div>
+        </center>
+
+      <textarea id="chat" cols="120" rows="20" placeholder="No messages yet. Come say Hi!" readonly></textarea><br /><br />
+      <input type="text" id="text" size="80" onkeyup=success() placeholder="Enter your message here" />
+      <button type="button" id="send" class="btn btn-success" disabled>SEND</button><br /><br />
       <center><button type="button" class="btn btn-danger" onclick=leave_room()>Leave this Chat</button></center>
     </div>
   </body>
+
 </html>
