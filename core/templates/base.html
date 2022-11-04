@@ -1,0 +1,94 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <!-- ** Plugins Needed for the Project ** -->
+    <!-- bulma -->
+    <link rel="stylesheet" href="{% static 'plugins/bulma/bulma.min.css' %}">
+    <!-- slick slider -->
+    <link rel="stylesheet" href="{% static 'plugins/slick/slick.css' %}">
+    <!-- themefy-icon -->
+    <link rel="stylesheet" href="{% static 'plugins/themify-icons/themify-icons.css' %}">
+
+    <!-- Main Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    
+    <!--Favicon-->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    {% block title %}
+    <title>Chattr | Chat with quirkiest random groups of people!</title>
+    {% endblock  %}
+
+    <style>
+        .chat-messages{
+            height: 100px;
+            overflow-y: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-center is-dark is-fixed-top" role="navigation" aria-label="main navigation">
+          <div class="navbar-brand mx-auto">
+                <a href="/" class="navbar-item  mx-auto title is-size-4 px-0 ">Chattr</a>
+          </div>
+        
+        </nav>
+      </header>
+      
+    {% block content %}
+  
+
+    {% endblock %}
+  
+
+<!-- footer -->
+<footer class="has-background-dark footer-section">
+    <div class="section">
+      <div class="container">
+        <div class="columns">
+          <div class="column is-4-tablet">
+            <h5 class="has-text-light">Email</h5>
+            <p class="has-text-white paragraph-lg font-secondary">jacobojeffrey1@gmail.com</p>
+          </div>
+          <div class="column is-4-tablet">
+            <h5 class="has-text-light">Phone</h5>
+            <p class="has-text-white paragraph-lg font-secondary">+63 997-390-6889</p>
+          </div>
+          <div class="column is-4-tablet">
+            <h5 class="has-text-light">Address</h5>
+            <p class="has-text-white paragraph-lg font-secondary">Metro Manila, Philippines</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section is-small has-text-centered has-border-top is-border-dark">
+      <p class="has-text-light">Copyright ©
+        <script>
+          var CurrentYear = new Date().getFullYear()
+          document.write(CurrentYear)
+        </script> a theme by <a href="https://www.themefisher.com">themefisher.com</a></p>
+    </div>
+  </footer>
+  <!-- /footer -->
+
+
+  <!-- jQuery -->
+  <script src="{% static 'plugins/jQuery/jquery.min.js' %}"></script>
+  <!-- slick slider -->
+  <script src="{% static 'plugins/slick/slick.min.js' %}"></script>
+  <!-- filter -->
+  <script src="{% static 'plugins/shuffle/shuffle.min.js' %}"></script>
+  
+  <!-- Main Script -->
+  <script src="{% static 'js/script.js' %}"></script>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

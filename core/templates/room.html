@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %} <title>{{room.name}} | Chattr</title> {% endblock  %}
+
+
+{% block content %}
+  <!-- testimonial -->
+  <section class="section has-background-primary is-relative testimonial-bg-shapes">
+    <div class="container">
+      <div class="has-text-centered">
+        <h2 class="section-title has-text-white">Room: {{room.name}}</h2>
+      </div>
+    </div>
+    <!-- bg shapes -->
+    <img src="{% static 'images/backgrounds/map.png' %}" alt="map" class="image bg-map">
+    <img src="{% static 'images/illustrations/dots-group-v.png' %}" alt="bg-shape" class="image bg-shape-1">
+    <img src="{% static 'images/illustrations/leaf-orange.png' %}" alt="bg-shape" class="image bg-shape-2">
+    <img src="{% static 'images/illustrations/dots-group-sm.png' %}" alt="bg-shape" class="image bg-shape-3">
+    <img src="{% static 'images/illustrations/leaf-pink-round.png' %}" alt="bg-shape" class="image bg-shape-4">
+    <img src="{% static 'images/illustrations/leaf-cyan.png' %}" alt="bg-shape" class="image bg-shape-5">
+  </section>
+  <!-- /testimonial -->
+{% comment %} MESSAGES {% endcomment %}
+<div class="lg:w-2/4 mx-4 lg:mx-auto p-4 bg-white rounded-xl">
+    <div class="chat-messages space-y-3" id="chat-messages">
+        {% for m in messages %}<b>{{ m.user.username }}</b>: {{ m.content }}<br>{% endfor %}
+    </div>
+</div>
+
+<div class="lg:w-2/4 mt-6 mx-4 lg:mx-auto p-4 bg-white rounded-xl">
+    <form method="post" action="." class="flex">
+        <input type="text" name="content" class="flex-1 mr-3" placeholder="Your message..." id="chat-message-input">
+
+        <button 
+            class="px-5 py-3 rounded-xl text-white bg-teal-600 hover:bg-teal-700"
+            id="chat-message-submit"
+        >Submit</button>
+    </form>
+</div>
+{% comment %} MESSAGES {% endcomment %}
+
+<div>
+    <form action="." method="post">
+        <input type="text" placeholder="Your message..." id="chat-message-input">
+        <button id="chat-message-submit">Send</button>
+    </form>
+</div>
+
+
+
+{% comment %}  {% endcomment %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<!-- MDB -->
+<section style="background-color: #eee;">
+    <div class="container py-5">
+  
+      <div class="row d-flex justify-content-center">
+            <div class="col-md-12 col-lg-12 col-xl-12">
+                <div class="card">
+
+                    <div class="card-header d-flex justify-content-between align-items-center p-3"
+                    style="border-top: 4px solid #ffa900;">
+                    <h5 class="mb-0">Chat messages</h5>
+                    </div>
+
+                    <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+                    {% for message in messages %}
+                    <div class="d-flex justify-content-between">
+                        <p class="small mb-1">{{message.user.username}}</p>
+                        <p class="small mb-1 text-muted">23 Jan 2:00 pm</p>
+                    </div>
+                    <div  class="d-flex flex-row justify-content-start">
+                        <div id="chat-messages" class="chat-messages">
+                        <p class="small p-2 ms-3 mb-3 rounded-3" style="background-color: #f5f6f7;">{{message.content}}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+        
+
+                    </div>
+                        <div class="card-footer text-muted d-flex justify-content-start align-items-center p-3">
+                        <div class="input-group mb-0">
+                            <input type="text" class="form-control" placeholder="Type message"
+                            aria-label="Recipient's username" aria-describedby="button-addon2" />
+                            <button class="btn btn-warning" type="button" id="button-addon2" style="padding-top: .55rem;">
+                            Button
+                            </button>
+                        </div>
+                    </div>
+                </div>
+    
+            </div>
+      </div>
+  
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+
+{{ room.slug|json_script:"json-roomname" }}
+{{ request.user.username|json_script:"json-username" }}
+<script>
+    const roomName = JSON.parse(document.getElementById('json-roomname').textContent);
+    const userName = JSON.parse(document.getElementById('json-username').textContent);
+    const chatSocket = new WebSocket(
+        'ws://'
+        + window.location.host
+        + '/ws/'
+        + roomName
+        + '/'
+    );
+
+    chatSocket.onmessage = function(e){
+        console.log('onmessage')
+        const data = JSON.parse(e.data);
+        if (data.message){
+            let html = '<div id="chat-messages">';
+                html += ' <p>' + data.username + '</p>';
+                html += ' <p>' + data.message + '</p></div>';
+            document.querySelector('#chat-messages').innerHTML += html;
+            scrollToBottom();
+               
+
+        }
+        else{
+            alert('The message was empty!')
+        }
+    }
+    chatSocket.onclose = function(e){
+        console.log('onclose')
+    }
+
+    //
+
+    document.querySelector('#chat-message-submit').onclick=function(e){
+        e.preventDefault();
+        const messageInputDom = document.querySelector('#chat-message-input');
+        const message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'message':message,
+            'username':userName,
+            'room':roomName,
+        }));
+
+        messageInputDom.value = '';
+        return false;
+    }
+
+
+    //
+    function scrollToBottom(){
+        const objDiv = document.querySelector('#chat-messages');
+        objDiv.scrollTop = objDiv.scrollHeight;
+    }
+    scrollToBottom();
+</script>
+{% endblock %}
+
+
+

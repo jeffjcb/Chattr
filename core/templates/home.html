@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %} <title>Home | Chattr</title> {% endblock  %}
+
+{% block content %}
+
+
+<!-- hero area -->
+<section class="hero-area has-background-primary" id="parallax">
+    <div class="layer-bg is-full">
+      <img class="image is-full" src="{% static 'images/illustrations/leaf-bg.png' %}" alt="bg-shape">
+    </div>
+    <div class="container">
+      <div class="columns">
+        <div class="column is-6-desktop">
+          <h1 class="has-text-white mb-20">Chat with the<br> quirkiest random <br> groups of people!</h1>
+          <p class="has-text-white subtitle is-5 mb-6"><i> Chattr is a simple web application project that enables people to enter different chat rooms and talk to each other.</i></p>
+        {% if request.user.is_authenticated %}
+        <div class="buttons">
+            <a href="/rooms/" class="button is-primary">Rooms</a><a href="/logout/" class="button is-dark">Logout</a>
+        </div>
+        {% else %}
+        <div class="buttons">
+            <a href="/login/" class="button is-primary">Login</a><a href="/signup/" class="button is-light">Signup</a>
+        </div>
+        {% endif %}
+        </div>
+  
+        <div class="column is-6-desktop">
+          <figure class="image is-4by3">
+            <img src="{% static 'images/testing.png' %}" alt="Placeholder image">
+          </figure>
+        </div>
+      </div>
+    </div>
+    
+    <div class="layer" id="l2">
+      <img src="{% static 'images/illustrations/dots-cyan.png' %}" alt="bg-shape">
+    </div>
+  
+    <div class="layer" id="l7">
+      <img src="{% static 'images/illustrations/dots-group-orange.png' %}" alt="bg-shape">
+    </div>
+  </section>
+  <!-- /hero area -->
+
+<!-- about -->
+<section class="section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-four-fifths-desktop has-text-centered">
+          <p class="font-secondary paragraph-lg has-text-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+            do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
+            in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          <a href="about.html" class="button is-link">know more</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /about -->
+  
+  
+  <!-- testimonial -->
+  <section class="section has-background-primary is-relative testimonial-bg-shapes">
+    <div class="container">
+      <div class="has-text-centered">
+        <h2 class="section-title has-text-white">Meet the Founder</h2>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-10 testimonial-slider">
+          <!-- slider-item -->
+          <div class="has-text-centered testimonial-content">
+            <p class="has-text-white mb-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+            <img class="image is-rounded is-inline-block mb-20" src="{% static 'images/testimonial/client-1.png' %}"
+              alt="client-image">
+            <h4 class="has-text-white">Jeffrey Jacobo</h4>
+            <h6 class="has-text-light mb-20">CEO</h6>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- bg shapes -->
+    <img src="{% static 'images/backgrounds/map.png' %}" alt="map" class="image bg-map">
+    <img src="{% static 'images/illustrations/dots-group-v.png' %}" alt="bg-shape" class="image bg-shape-1">
+    <img src="{% static 'images/illustrations/leaf-orange.png' %}" alt="bg-shape" class="image bg-shape-2">
+    <img src="{% static 'images/illustrations/dots-group-sm.png' %}" alt="bg-shape" class="image bg-shape-3">
+    <img src="{% static 'images/illustrations/leaf-pink-round.png' %}" alt="bg-shape" class="image bg-shape-4">
+    <img src="{% static 'images/illustrations/leaf-cyan.png' %}" alt="bg-shape" class="image bg-shape-5">
+  </section>
+  <!-- /testimonial -->
+
+<!-- blog -->
+<section class="section">
+    <div class="container">
+      <div class="has-text-centered">
+        <h2 class="section-title">Other Projects</h2>
+      </div>
+      <div class="columns is-multiline">
+        <div class="column is-4-desktop is-6-tablet">
+          <article class="card shadow">
+            <figure class="image is-4by3">
+              <img src="{% static 'images/blog/post-3.jpg' %}" alt="Placeholder image">
+            </figure>
+            <div class="card-content">
+              <h4 class="mb-10"><a class="has-text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
+              </h4>
+              <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                incididunt ut labore et
+                dolore magna aliqua.</p>
+              <a href="blog-single.html" class="button is-extra-small is-primary">Read More</a>
+            </div>
+          </article>
+        </div>
+        <div class="column is-4-desktop is-6-tablet">
+          <article class="card shadow">
+            <figure class="image is-4by3">
+              <img src="{% static 'images/blog/post-4.jpg' %}" alt="Placeholder image">
+            </figure>
+            <div class="card-content">
+              <h4 class="mb-10"><a class="has-text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
+              </h4>
+              <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                incididunt ut labore et
+                dolore magna aliqua.</p>
+              <a href="blog-single.html" class="button is-extra-small is-primary">Read More</a>
+            </div>
+          </article>
+        </div>
+        <div class="column is-4-desktop is-6-tablet">
+          <article class="card shadow">
+            <figure class="image is-4by3">
+              <img src="{% static 'images/blog/post-6.jpg' %}" alt="Placeholder image">
+            </figure>
+            <div class="card-content">
+              <h4 class="mb-10"><a class="has-text-dark" href="blog-single.html">Amazon increase income 1.5 Million</a>
+              </h4>
+              <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                incididunt ut labore et
+                dolore magna aliqua.</p>
+              <a href="blog-single.html" class="button is-extra-small is-primary">Read More</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /blog -->
+
+
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %} <title>Signup | Chattr</title> {% endblock  %}
+
+{% block content %}
+
+
+ <body>
+    <section class="section has-background-primary">
+
+    </section>
+     <!-- contact -->
+     <section class="section " data-background="images/backgrounds/bg-dots.png">
+         <div class="container">
+      <div class="has-text-centered">
+        <h2 class="section-title">Signup</h2>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-6-desktop">
+          <div class="has-background-white card-content has-text-centered shadow-down">
+            <h4 class="mb-80">Signup now to chat with people!</h4>
+            <form action="." method="POST" class="columns is-multiline is-centered">
+                {% csrf_token %}
+              <div class="column is-12-tablet">
+                <input type="text" id="username" name="username" placeholder="Username" class="input" autofocus="" required>
+              </div>
+              <div class="column is-12-tablet">
+                <input type="password" id="password1" name="password1" placeholder="Password" class="input" required>
+              </div>
+              <div class="column is-12-tablet">
+                <input type="password" id="password2" name="password2" placeholder="Confirm Password" class="input" required>
+              </div>
+              <div class="column is-6-tablet is-10">
+                <button type="submit" class="button is-primary is-fullwidth">Register <i class="fa fa-sign-in" aria-hidden="true"></i></button>
+              </div>
+              
+              {%  if form.errors  %}
+              {% for field in form %}
+              {% for error in field.errors %}
+              <div>
+                  <p>{{error|escape}}</p>
+              </div>
+              {% endfor %}
+              {% endfor %}
+              {% endif %}
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /contact -->
+  
+
+<p class="has-text-grey has-text-centered">
+    Have an account? <a href="/login/">Login</a> &nbsp;·&nbsp;
+    <a href="../">Need Help?</a>
+</p>
+
+</body>
+{% endblock %}

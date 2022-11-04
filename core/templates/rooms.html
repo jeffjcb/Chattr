@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title  %} <title>Rooms | Chattr</title> {% endblock  %}
+
+{% block content %}
+
+  
+  <!-- testimonial -->
+  <section class="section has-background-primary is-relative testimonial-bg-shapes">
+    <div class="container">
+      <div class="has-text-centered">
+        <h2 class="section-title has-text-white">Available Rooms</h2>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-10 testimonial-slider">
+          <!-- slider-item -->
+          <div class="has-text-centered testimonial-content">
+            <p class="has-text-white mb-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation
+                ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit
+              in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- bg shapes -->
+    <img src="{% static 'images/backgrounds/map.png' %}" alt="map" class="image bg-map">
+    <img src="{% static 'images/illustrations/dots-group-v.png' %}" alt="bg-shape" class="image bg-shape-1">
+    <img src="{% static 'images/illustrations/leaf-orange.png' %}" alt="bg-shape" class="image bg-shape-2">
+    <img src="{% static 'images/illustrations/dots-group-sm.png' %}" alt="bg-shape" class="image bg-shape-3">
+    <img src="{% static 'images/illustrations/leaf-pink-round.png' %}" alt="bg-shape" class="image bg-shape-4">
+    <img src="{% static 'images/illustrations/leaf-cyan.png' %}" alt="bg-shape" class="image bg-shape-5">
+  </section>
+  <!-- /testimonial -->
+
+
+  
+<!-- blog -->
+<section class="section">
+    <div class="container">
+      <div class="columns is-multiline">
+        {% for room in rooms %}
+        <div class="column is-4-desktop is-6-tablet">
+          <article class="card shadow">
+            <figure class="image is-4by3">
+              <img src="{% static 'images/blog/post-3.jpg' %}" alt="Placeholder image">
+            </figure>
+            <div class="card-content">
+              <h4 class="mb-10"><a class="has-text-dark" href="{% url 'room' room.slug %}">{{ room.name }}</a>
+              </h4>
+              <p class="mb-10">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                incididunt ut labore et
+                dolore magna aliqua.</p>
+              <a href="{% url 'room' room.slug %}" class="button is-extra-small is-primary">Join</a>
+            </div>
+          </article>
+        </div>
+        {% endfor %}
+        
+      </div>
+    </div>
+  </section>
+  <!-- /blog -->
+  
+
+{% endblock %}
