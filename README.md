@@ -1,5 +1,7 @@
 # Chattr
 Chat Application where you can hang out anytime, anywhere and makes it easy and fun to stay close to your favorite people.
+The project's purpose to enhance the developer's skills in terms of familiarizing oneself on using docker deployments, nginx, channels, CICD, gunicorn, ASGI, and WSGI.
+The project itself it very rough draft since it is focused mostly on deploying a dynamic web application.
 ![Screenshot 2022-11-30 213523](https://user-images.githubusercontent.com/65888696/204812566-346de2ee-13c1-4573-b605-c7c1c716ddca.png)
 
 You can join various rooms where you can chat with random people.
