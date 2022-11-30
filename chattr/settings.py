@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-zf$vz89n-clos@kp3(p2zm+396b*&_0nj&2qmua!gt&nnk@&e@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 LOGOUT_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/rooms/'

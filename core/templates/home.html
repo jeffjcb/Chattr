@@ -49,11 +49,8 @@
     <div class="container">
       <div class="columns is-centered">
         <div class="column is-four-fifths-desktop has-text-centered">
-          <p class="font-secondary paragraph-lg has-text-dark">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-            do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-          <a href="about.html" class="button is-link">know more</a>
+          <p class="font-secondary paragraph-lg has-text-dark">Chattr enables people to enter different chat rooms and talk to each other. The application is accomplished through a web interface and allows users to create their own chat room as well as subscribe to existing ones. The framework is build around Django, Channels, and deployment via Docker and Nginx. Users are also able to log out of a chat room, change the title of the room, join a chat room if they are already present in it or if they decide that they have no interest in the current topic being discussed.</p>
+          <a href="{% url 'home' %}" class="button is-link">know more</a>
         </div>
       </div>
     </div>
@@ -71,11 +68,8 @@
         <div class="column is-10 testimonial-slider">
           <!-- slider-item -->
           <div class="has-text-centered testimonial-content">
-            <p class="has-text-white mb-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation
-                ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit
-              in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-            <img class="image is-rounded is-inline-block mb-20" src="{% static 'images/testimonial/client-1.png' %}"
+            <p class="has-text-white mb-20">The founder is an aspiring Cloud engineer that is passionate to deliver cloud solutions to customers. Building personal projects is hobby that can probably enhance his skill sets. Chattr is one of the personal projects that he has created.</p>
+            <img class="image is-rounded is-inline-block mb-20" width="100" height="200" src="{% static 'images/me.jpg' %}"
               alt="client-image">
             <h4 class="has-text-white">Jeffrey Jacobo</h4>
             <h6 class="has-text-light mb-20">CEO</h6>
