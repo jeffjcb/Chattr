@@ -3,12 +3,16 @@ version: '3.9'
 services:
   django:
     build: .
-    ports: 
-      - '8000:8000'
+    command: gunicorn chattr.wsgi:application --bind 0.0.0.0:8000
+    # volumes:
+    #   - static_volume:/home/app/django/staticfiles
+    expose:
+      - 8000
     env_file:
       - venv/.env.production
     depends_on:
       - db
+
   db:
     image: "postgres:13.0-alpine"
     volumes:
@@ -16,6 +20,15 @@ services:
     env_file:
       - venv/.env.database
 
+  nginx:
+    build: ./nginx
+    ports:
+      - 1337:80
+    # volumes:
+    #   - static_volume:/home/app/django/staticfiles 
+    depends_on:
+      - django
 
 volumes:
   psqldata:
+  # static_volume:

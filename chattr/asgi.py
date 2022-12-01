@@ -19,7 +19,7 @@ import room.routing
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'chattr.settings')
 
 application = ProtocolTypeRouter({
-    "http":get_asgi_application(),
+    "http": get_asgi_application(),
     "websocket": AuthMiddlewareStack(
         URLRouter(
             room.routing.websocket_urlpatterns
